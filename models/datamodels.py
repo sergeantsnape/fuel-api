@@ -7,3 +7,4 @@ class Payload(BaseModel):
 
 class Fuel(Payload):
     fuel_price: float
+
