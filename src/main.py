@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 import sys
 from fastapi import FastAPI, status, HTTPException, Query
-from datamodels import Payload, Fuel
+from src.datamodels import Payload, Fuel
 from typing import Annotated
 
 sys.stdout.reconfigure(encoding='utf-8')
@@ -10,8 +10,8 @@ sys.stdout.reconfigure(encoding='utf-8')
 
 app = FastAPI()
 
-@app.get('/')
-async def get_fuel_price(payload:Annotated[Payload,Query()]):
+@app.get('/', response_model=Fuel)
+async def get_fuel_price(payload:Annotated[Payload,Query()]) -> Fuel:
     print(payload)
     try:
         url = f'https://www.livemint.com/fuel-prices/{payload.fuel_type.lower()}-city-{payload.city.lower()}'
@@ -50,5 +50,6 @@ async def get_fuel_price(payload:Annotated[Payload,Query()]):
     except Exception as e:
         raise HTTPException(
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                detail="Unexpected Error") from e
+                detail="Unexpected Error"
+            ) from e
 
