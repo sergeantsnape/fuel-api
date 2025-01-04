@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from fastapi import HTTPException, status
-from typing import Any
+
 
 # abstract class to implement errors
 class _BaseError(HTTPException,ABC):
@@ -12,7 +12,7 @@ class _BaseError(HTTPException,ABC):
         pass
 
     @abstractmethod
-    def get_details(self,**kwargs) -> Any:
+    def get_details(self,**kwargs) -> str:
         pass
 
 class ExternalSourceError(_BaseError):

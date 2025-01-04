@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
-from models.datamodels import Payload, Fuel
-from models.errors import (
+from src.models.datamodels import Payload, Fuel
+from src.models.errors import (
     ExternalSourceError, CityNotFoundError,
     PriceNotFoundError, UnexpectedError)
 

@@ -1,3 +1,4 @@
 home.html
 __pycache__/
 .fuel_price_api/
+.env
